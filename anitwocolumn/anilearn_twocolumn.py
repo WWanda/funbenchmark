@@ -15,17 +15,36 @@ maindataset=pd.read_csv(file)
 dataset=maindataset
 predictor=["t11","t12","t13","t14","t15","t21","t22","t23","t24","t25","b11","b12","b13","b14","b15","b21","b22","b23","b24","b25"] #"c1","c2","c3","sel11","sel12","sel13","sel14","sel15","sel21","sel22","sel23","sel24","sel25",
 
-dataset["w11"]=dataset["sel11"]*dataset["b11"]
-dataset["w12"]=dataset["sel12"]*dataset["b12"]
-dataset["w13"]=dataset["sel13"]*dataset["b13"]
-dataset["w14"]=dataset["sel14"]*dataset["b14"]
-dataset["w15"]=dataset["sel15"]*dataset["b15"]
-dataset["w21"]=dataset["sel21"]*dataset["b21"]
-dataset["w22"]=dataset["sel22"]*dataset["b22"]
-dataset["w23"]=dataset["sel23"]*dataset["b23"]
-dataset["w24"]=dataset["sel24"]*dataset["b24"]
-dataset["w25"]=dataset["sel25"]*dataset["b25"]
 
+if dataset["t12"]==1 or dataset["t13"]==1:
+    dataset["w11"]=dataset["sel11"]*(dataset["b11"]+dataset["b12"]+dataset["b13"]+dataset["b14"]+dataset["b15"})
+    dataset["w12"]=dataset["sel12"]*(dataset["b12"]+dataset["b13"]+dataset["b14"]+dataset["b15"])
+    dataset["w13"]=dataset["sel13"]*(dataset["b13"]+dataset["b14"]+dataset["b15"])
+    dataset["w14"]=dataset["sel14"]*(dataset["b14"]+dataset["b15"])
+    dataset["w15"]=dataset["sel15"]*dataset["b15"]
+                                                                                                         
+if dataset["t11"]==1 or dataset["t14"]==1:
+    dataset["w11"]=dataset["sel11"]*(dataset["b11"])
+    dataset["w12"]=dataset["sel12"]*(dataset["b11"]+dataset["b12"])
+    dataset["w13"]=dataset["sel13"]*(dataset["b11"]+dataset["b12"]+dataset["b13"])
+    dataset["w14"]=dataset["sel14"]*(dataset["b11"]+dataset["b12"]+dataset["b13"]+dataset["b14"])
+    dataset["w15"]=dataset["sel15"]*(dataset["b11"]+dataset["b12"]+dataset["b13"]+dataset["b14"]+dataset["b15"})                                               
+ 
+ if dataset["t22"]==1 or dataset["t23"]==1:
+    dataset["w21"]=dataset["sel21"]*(dataset["b21"]+dataset["b22"]+dataset["b23"]+dataset["b24"]+dataset["b25"})
+    dataset["w22"]=dataset["sel22"]*(dataset["b22"]+dataset["b23"]+dataset["b24"]+dataset["b25"])
+    dataset["w23"]=dataset["sel23"]*(dataset["b23"]+dataset["b24"]+dataset["b25"])
+    dataset["w24"]=dataset["sel24"]*(dataset["b24"]+dataset["b25"])
+    dataset["w25"]=dataset["sel25"]*dataset["b25"]
+                                                                                                         
+if dataset["t21"]==1 or dataset["t24"]==1:
+    dataset["w21"]=dataset["sel21"]*(dataset["b21"])
+    dataset["w22"]=dataset["sel22"]*(dataset["b21"]+dataset["b22"])
+    dataset["w23"]=dataset["sel23"]*(dataset["b21"]+dataset["b22"]+dataset["b23"])
+    dataset["w24"]=dataset["sel24"]*(dataset["b21"]+dataset["b22"]+dataset["b23"]+dataset["b24"])
+    dataset["w25"]=dataset["sel25"]*(dataset["b21"]+dataset["b22"]+dataset["b23"]+dataset["b24"]+dataset["b25"})                                                                                                            
+                  
+ 
 predictor=["t11","t12","t13","t14","t15","t21","t22","t23","t24","t25","w11","w12","w13","w14","w15","w21","w22","w23","w24","w25"]
 lp = len(predictor)
 for i in range(len(predictor)):
